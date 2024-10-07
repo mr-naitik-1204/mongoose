@@ -1,0 +1,58 @@
+<form action="/createdata" method="post">
+    <label for="f_name">First Name:</label>
+    <input type="text" id="f_name" name="f_name"><br><br>
+
+    <label for="l_name">Last Name:</label>
+    <input type="text" id="l_name" name="l_name"><br><br>
+
+    <label>Gender:</label>
+    <input type="radio" name="gender" value="male"> Male
+    <input type="radio" name="gender" value="female"> Female<br><br>
+
+    <label>Hobby:</label>
+    <input type="checkbox" name="hobby" value="cricket"> Cricket
+    <input type="checkbox" name="hobby" value="hockey"> Hockey
+    <input type="checkbox" name="hobby" value="football"> Football
+    <input type="checkbox" name="hobby" value="kabaddi"> Kabaddi
+    <input type="checkbox" name="hobby" value="wrestling"> Wrestling
+    <input type="checkbox" name="hobby" value="driving"> Driving<br><br>
+
+    <label for="city">City:</label>
+    <select id="city" name="city">
+        <option value="surat">Surat</option>
+        <option value="ahmedabad">Ahmedabad</option>
+        <option value="vadodara">Vadodara</option>
+        <option value="bhavnagar">Bhavnagar</option>
+        <option value="rajkot">Rajkot</option>
+        <option value="mumbai">Mumbai</option>
+    </select>
+
+    <button type="submit">Submit</button>
+</form>
+
+<table border="1">
+    <thead>
+        <tr>
+            <th>ID</th>
+            <th>First Name</th>
+            <th>Last Name</th>
+            <th>Gender</th>
+            <th>Hobby</th>
+            <th>City</th>
+            <th>Actions</th>
+        </tr>
+    </thead>
+    <tbody>
+        <% alldata.map((item) => { %>
+            <tr>
+                <td><%= item._id %></td>
+                <td><%= item.f_name %></td>
+                <td><%= item.l_name %></td>
+                <td><%= item.gender %></td>
+                <td><%= item.hobby%></td>
+                <td><%= item.city %></td>
+               
+            </tr>
+        <% }) %>
+    </tbody>
+</table>
