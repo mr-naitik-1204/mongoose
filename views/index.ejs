@@ -1,30 +1,41 @@
 <form action="/createdata" method="post">
+
+    <input type="text" name="id" value="<%=editdata?editdata._id:"" %>">
+
+
     <label for="f_name">First Name:</label>
-    <input type="text" id="f_name" name="f_name"><br><br>
+    <input type="text" id="f_name" name="f_name" value="<%= (editdata) ? editdata.f_name : '' %>">
 
     <label for="l_name">Last Name:</label>
-    <input type="text" id="l_name" name="l_name"><br><br>
+    <input type="text" id="l_name" name="l_name" value="<%= (editdata) ? editdata.l_name : '' %>">
 
     <label>Gender:</label>
-    <input type="radio" name="gender" value="male"> Male
-    <input type="radio" name="gender" value="female"> Female<br><br>
+    <input type="radio" name="gender" value="male" <%=(editdata && editdata.gender==='male' ) ? 'checked' : '' %>> Male
+    <input type="radio" name="gender" value="female" <%=(editdata && editdata.gender==='female' ) ? 'checked' : '' %>>
+    Female<br><br>
 
     <label>Hobby:</label>
-    <input type="checkbox" name="hobby" value="cricket"> Cricket
-    <input type="checkbox" name="hobby" value="hockey"> Hockey
-    <input type="checkbox" name="hobby" value="football"> Football
-    <input type="checkbox" name="hobby" value="kabaddi"> Kabaddi
-    <input type="checkbox" name="hobby" value="wrestling"> Wrestling
-    <input type="checkbox" name="hobby" value="driving"> Driving<br><br>
+    <input type="checkbox" name="hobby" value="cricket" <%=(editdata && editdata.hobby.includes('cricket')) ? 'checked'
+        : '' %>> Cricket
+    <input type="checkbox" name="hobby" value="hockey" <%=(editdata && editdata.hobby.includes('hockey')) ? 'checked'
+        : '' %>> Hockey
+    <input type="checkbox" name="hobby" value="football" <%=(editdata && editdata.hobby.includes('football'))
+        ? 'checked' : '' %>> Football
+    <input type="checkbox" name="hobby" value="kabaddi" <%=(editdata && editdata.hobby.includes('kabaddi')) ? 'checked'
+        : '' %>> Kabaddi
+    <input type="checkbox" name="hobby" value="wrestling" <%=(editdata && editdata.hobby.includes('wrestling'))
+        ? 'checked' : '' %>> Wrestling
+    <input type="checkbox" name="hobby" value="driving" <%=(editdata && editdata.hobby.includes('driving')) ? 'checked'
+        : '' %>> Driving<br>
 
     <label for="city">City:</label>
     <select id="city" name="city">
-        <option value="surat">Surat</option>
-        <option value="ahmedabad">Ahmedabad</option>
-        <option value="vadodara">Vadodara</option>
-        <option value="bhavnagar">Bhavnagar</option>
-        <option value="rajkot">Rajkot</option>
-        <option value="mumbai">Mumbai</option>
+        <option value="surat" <%=(editdata && editdata.city==='surat' ) ? 'selected' : '' %>>Surat</option>
+        <option value="ahmedabad" <%=(editdata && editdata.city==='ahmedabad' ) ? 'selected' : '' %>>Ahmedabad</option>
+        <option value="vadodara" <%=(editdata && editdata.city==='vadodara' ) ? 'selected' : '' %>>Vadodara</option>
+        <option value="bhavnagar" <%=(editdata && editdata.city==='bhavnagar' ) ? 'selected' : '' %>>Bhavnagar</option>
+        <option value="rajkot" <%=(editdata && editdata.city==='rajkot' ) ? 'selected' : '' %>>Rajkot</option>
+        <option value="mumbai" <%=(editdata && editdata.city==='mumbai' ) ? 'selected' : '' %>>Mumbai</option>
     </select>
 
     <button type="submit">Submit</button>
@@ -43,16 +54,31 @@
         </tr>
     </thead>
     <tbody>
-        <% alldata.map((item) => { %>
+        <% alldata.map((item,index)=> { %>
             <tr>
-                <td><%= item._id %></td>
-                <td><%= item.f_name %></td>
-                <td><%= item.l_name %></td>
-                <td><%= item.gender %></td>
-                <td><%= item.hobby%></td>
-                <td><%= item.city %></td>
-               
+                <td>
+                    <%= item._id %>
+                </td>
+                <td>
+                    <%= item.f_name %>
+                </td>
+                <td>
+                    <%= item.l_name %>
+                </td>
+                <td>
+                    <%= item.gender %>
+                </td>
+                <td>
+                    <%= item.hobby%>
+                </td>
+                <td>
+                    <%= item.city %>
+                </td>
+                <td>
+                    <button><a href="/deletedata?delet=<%= item._id %>">Delete</a></button>
+                    <button><a href="/editdata?up=<%= item._id %>">Edit</a></button>
+                </td>
             </tr>
-        <% }) %>
+            <% }) %>
     </tbody>
 </table>
